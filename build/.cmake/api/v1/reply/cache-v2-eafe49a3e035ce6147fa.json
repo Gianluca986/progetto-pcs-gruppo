@@ -55,7 +55,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/home/pcsdocker/Data/ES_PCS_26/progetto/build"
+			"value" : "/home/pcsdocker/Data/PROGETTO_PCS/build"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -526,16 +526,12 @@
 			"properties" : 
 			[
 				{
-					"name" : "ADVANCED",
-					"value" : "1"
-				},
-				{
 					"name" : "HELPSTRING",
-					"value" : "Enable/Disable output of compile commands during generation."
+					"value" : "No help, variable specified on the command line."
 				}
 			],
 			"type" : "BOOL",
-			"value" : ""
+			"value" : "TRUE"
 		},
 		{
 			"name" : "CMAKE_EXTRA_GENERATOR",
@@ -559,7 +555,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/home/pcsdocker/Data/ES_PCS_26/progetto/build/CMakeFiles/pkgRedirects"
+			"value" : "/home/pcsdocker/Data/PROGETTO_PCS/build/CMakeFiles/pkgRedirects"
 		},
 		{
 			"name" : "CMAKE_GENERATOR",
@@ -619,7 +615,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/home/pcsdocker/Data/ES_PCS_26/progetto"
+			"value" : "/home/pcsdocker/Data/PROGETTO_PCS"
 		},
 		{
 			"name" : "CMAKE_INSTALL_PREFIX",
@@ -1219,7 +1215,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/home/pcsdocker/Data/ES_PCS_26/progetto/build"
+			"value" : "/home/pcsdocker/Data/PROGETTO_PCS/build"
 		},
 		{
 			"name" : "progetto_IS_TOP_LEVEL",
@@ -1243,7 +1239,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/home/pcsdocker/Data/ES_PCS_26/progetto"
+			"value" : "/home/pcsdocker/Data/PROGETTO_PCS"
 		}
 	],
 	"kind" : "cache",

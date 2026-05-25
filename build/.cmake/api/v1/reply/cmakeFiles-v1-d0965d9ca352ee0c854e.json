@@ -860,8 +860,8 @@
 	"kind" : "cmakeFiles",
 	"paths" : 
 	{
-		"build" : "/home/pcsdocker/Data/ES_PCS_26/progetto/build",
-		"source" : "/home/pcsdocker/Data/ES_PCS_26/progetto"
+		"build" : "/home/pcsdocker/Data/PROGETTO_PCS/build",
+		"source" : "/home/pcsdocker/Data/PROGETTO_PCS"
 	},
 	"version" : 
 	{

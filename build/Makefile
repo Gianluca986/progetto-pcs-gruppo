@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/pcsdocker/Data/ES_PCS_26/progetto
+CMAKE_SOURCE_DIR = /home/pcsdocker/Data/PROGETTO_PCS
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/pcsdocker/Data/ES_PCS_26/progetto/build
+CMAKE_BINARY_DIR = /home/pcsdocker/Data/PROGETTO_PCS/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -97,9 +97,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pcsdocker/Data/ES_PCS_26/progetto/build/CMakeFiles /home/pcsdocker/Data/ES_PCS_26/progetto/build//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pcsdocker/Data/PROGETTO_PCS/build/CMakeFiles /home/pcsdocker/Data/PROGETTO_PCS/build//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pcsdocker/Data/ES_PCS_26/progetto/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pcsdocker/Data/PROGETTO_PCS/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target

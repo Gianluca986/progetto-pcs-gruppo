@@ -71,7 +71,7 @@ int main(int argc, const char *argv[] ) {
     std::cout << G << std::endl;
     std::cout << T << std::endl;
 
-    
+    std::cout << G - T << std::endl;
     return 0;
 
 

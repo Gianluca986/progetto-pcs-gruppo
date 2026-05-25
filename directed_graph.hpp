@@ -9,8 +9,6 @@
 #include <Eigen/Dense>
 
 
-
-
 class directed_graph {
 private: 
     std::unordered_map<int, std::set<int>> graph;
@@ -18,6 +16,18 @@ private:
     std::vector<directed_edge<generator>> gen_edges; 
     std::vector<directed_edge<resistor>> res_edges; 
     //std::vector<directed_edge<T>> _edges;  
+
+    /* funzione che controlla se l'arco edge è già arco del grafo salvato in vec*/
+    template<typename U, typename V>
+    bool has_same_nodes(std::vector<directed_edge<U>> vec, directed_edge<V> edge) {
+        for (const auto& existing_edge : vec) {
+                if (edge.from() == existing_edge.from() && edge.to() == existing_edge.to()) {
+                    return true; 
+                }
+
+        }
+        return false;
+    }
 
 
 public:
@@ -46,10 +56,18 @@ public:
         // Se non è nemmeno in "nodes", non fa parte del grafo
         return {};
     }
+    // BUG POSSIBILE
+    // se aggiungo lo stesso arco con componenti diverse NON dà errore
     
     void add_edge(const directed_edge<generator>& edge) {
-        /* se l'arco già appartiene al grafo non ha senso inserirlo */
-        if (std::find(gen_edges.begin(), gen_edges.end(), edge) != gen_edges.end() ) {
+        /* Controllo incrociato: */
+        if (has_same_nodes(res_edges, edge) ) {
+            std::cerr << "Nodes of edge " << edge << " already is a resistor edge! \nCheck input file!!" << std::endl; 
+            return;
+        }
+
+        /* Controllo normale: l'arco esiste già nei generatori? */
+        if (has_same_nodes(gen_edges, edge)) {
             return;
         }
         /* inserisco l'arco nella struttura dati */
@@ -62,8 +80,15 @@ public:
     }
 
     void add_edge(const directed_edge<resistor>& edge) {
-        /* se l'arco già appartiene al grafo non ha senso inserirlo */
-        if (std::find(res_edges.begin(), res_edges.end(), edge) != res_edges.end() ) {
+        
+        /* Controllo incrociato: */
+        if (has_same_nodes(res_edges, edge) ) {
+            std::cerr << "Nodes of edge " << edge << " already is a resistor edge! \nCheck input file!!" << std::endl; 
+            return;
+        }
+
+        /* Controllo normale: l'arco esiste già nei generatori? */
+        if (has_same_nodes(gen_edges, edge)) {
             return;
         }
         /* inserisco l'arco nella struttura dati */
@@ -87,6 +112,17 @@ public:
         return nodes;
     }
 
+    /*
+    1 : {2,3}       (1,2)      (4,3)
+    2 : {3,4}       (1,3)
+    3 : {}          (2,3) 
+    4 : {3}         (2,4)
+
+    1 : {2,3}       (1,2)
+    2 : {4}         (1,3)           ==>     (2,3) 2 : {3}
+    3 : {}          (2,4)                   (4,3) 4 : {3}
+    4 : {}
+    */
 
                      /* SOTTRAZIONE */
     /*  Calcola la differenza tra grafi (G - G'):
@@ -94,17 +130,25 @@ public:
         2. Scorro tutti gli archi di questo grafo (G). 
         3. Se un arco NON viene trovato in G' (std::find restituisce .end()), 
            significa che appartiene alla differenza, quindi lo aggiungo al risultato. */
-    /*directed_graph operator-(const directed_graph& other) const {
-        unidirected_graph result; // grafo vuoto 
-        for (const auto& edge : v_edges) { // per ogni edge appartenente a v_edges 
-            auto found = std::find(other.v_edges.begin(), other.v_edges.end(), edge);
-            if (found == other.v_edges.end()) { // -> l'arco non è in other.v_edges
-                result.add_edge(edge);
+    directed_graph operator-(const directed_graph& other) const {
+        directed_graph result; // grafo vuoto 
+        // prima controllo tra gli archi dei resistori
+        for (const auto& r_edge : res_edges) { 
+            auto found = std::find(other.res_edges.begin(), other.res_edges.end(), r_edge);
+            if (found == other.res_edges.end()) { // -> l'arco non è in other.v_edges
+                result.add_edge(r_edge);
+            }
+        }
+
+        for (const auto& g_edge : gen_edges) {
+            auto found = std::find(other.gen_edges.begin(), other.gen_edges.end(), g_edge);
+            if (found == other.gen_edges.end()) {
+                result.add_edge(g_edge);
             }
         }
         return result;
                   
-    }*/
+    }
 
 
 };
@@ -133,8 +177,15 @@ inline std::ostream& operator<<(std::ostream& os, const std::set<int>& s)
 // operatore << per il grafo //
 inline std::ostream& operator<<(std::ostream& os, const directed_graph& graph)
 {
-    for (const auto& node : graph.all_nodes()) {
+    /*for (const auto& node : graph.all_nodes()) {
         os << node << " : " << graph.neighbors(node) << "\n";
+    }*/
+
+    for (const auto& edge : graph.all_edges_gen()) {
+        os << edge << "\n";
+    }
+    for (const auto& edge : graph.all_edges_res()) {
+        os << edge << "\n";
     }
     return os;
 }

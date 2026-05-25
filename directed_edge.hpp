@@ -31,7 +31,7 @@ public:
     T   comp() const {return _comp;}
     //std::pair<std::string, double> weight() const {return _weight; }
 
-    bool operator<(const directed_edge& other) const {
+    bool operator<(const directed_edge<T>& other) const {
         if (_from < other._from) return true;
         if (_from == other._from) {
             return _to < other._to;
@@ -39,8 +39,8 @@ public:
         return false;
     }
 
-    bool operator==(const directed_edge& other) const {
-        return (_from == other._from && _to == other._to);
+    bool operator==(const directed_edge<T>& other) const {
+        return (_from == other._from && _to == other._to && _comp == other._comp);
     }
 };
 

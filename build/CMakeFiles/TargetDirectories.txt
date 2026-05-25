@@ -1,4 +1,4 @@
-/home/pcsdocker/Data/ES_PCS_26/progetto/build/CMakeFiles/main.dir
-/home/pcsdocker/Data/ES_PCS_26/progetto/build/CMakeFiles/test.dir
-/home/pcsdocker/Data/ES_PCS_26/progetto/build/CMakeFiles/edit_cache.dir
-/home/pcsdocker/Data/ES_PCS_26/progetto/build/CMakeFiles/rebuild_cache.dir
+/home/pcsdocker/Data/PROGETTO_PCS/build/CMakeFiles/main.dir
+/home/pcsdocker/Data/PROGETTO_PCS/build/CMakeFiles/test.dir
+/home/pcsdocker/Data/PROGETTO_PCS/build/CMakeFiles/edit_cache.dir
+/home/pcsdocker/Data/PROGETTO_PCS/build/CMakeFiles/rebuild_cache.dir
