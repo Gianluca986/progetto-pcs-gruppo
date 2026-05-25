@@ -1,0 +1,8 @@
+[
+{
+  "directory": "/home/pcsdocker/Data/ES_PCS_26/progetto/build",
+  "command": "/usr/bin/clang++  -isystem /usr/include/eigen3  -Wall -Wshadow -Werror=vla -Wno-sign-compare -g -std=gnu++20 -o CMakeFiles/main.dir/main.cpp.o -c /home/pcsdocker/Data/ES_PCS_26/progetto/main.cpp",
+  "file": "/home/pcsdocker/Data/ES_PCS_26/progetto/main.cpp",
+  "output": "CMakeFiles/main.dir/main.cpp.o"
+}
+]
