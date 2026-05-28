@@ -30,9 +30,9 @@ int main(int argc, const char *argv[] ) {
    // std::string file_name = argv[1];     // il nome del file è quello scritto nel terminale come secondo parametro
     std::ifstream ifs(file_name);          // apro il file
 
-    std::vector<directed_edge<generator>> gen_edges;
-    std::vector<directed_edge<resistor>> res_edges;
-    directed_graph G;
+    std::vector<undirected_edge<generator>> gen_edges;
+    std::vector<undirected_edge<resistor>>  res_edges;
+    undirected_graph G;
     
     if (ifs.is_open()) {
         std::string component;
@@ -44,13 +44,13 @@ int main(int argc, const char *argv[] ) {
         while (ifs >> component >> value >> _from >> _to) { 
             if (component[0] == 'V') {
                 generator gen(component, value);
-                directed_edge<generator> edge_g(gen, _from, _to);
+                undirected_edge<generator> edge_g(gen, _from, _to);
                 gen_edges.push_back(edge_g);
                 G.add_edge(edge_g);
             }
             else if (component[0] == 'R') {
                 resistor res(component, value);
-                directed_edge<resistor> edge_r(res, _from, _to);
+                undirected_edge<resistor> edge_r(res, _from, _to);
                 res_edges.push_back(edge_r);
                 G.add_edge(edge_r);
             }
@@ -65,10 +65,10 @@ int main(int argc, const char *argv[] ) {
     //print_vector(res_edges);
     //print_vector(gen_edges);
 
-    stack<Journey> s;
-    directed_graph T = graph_visit(G, 1, s);
-
+    stack<Journey> s;  // uso uno stack cosi che graph_visit diventi una dfs
     std::cout << G << std::endl;
+    undirected_graph T = graph_visit(G, 1, s);
+
     std::cout << T << std::endl;
 
     std::cout << G - T << std::endl;

@@ -9,17 +9,17 @@
 #include <Eigen/Dense>
 
 
-class directed_graph {
+class undirected_graph {
 private: 
     std::unordered_map<int, std::set<int>> graph;
     std::set<int> nodes;    // memorizzo i nodi in un set (che ignora i duplicati)
-    std::vector<directed_edge<generator>> gen_edges; 
-    std::vector<directed_edge<resistor>> res_edges; 
+    std::vector<undirected_edge<generator>> gen_edges; 
+    std::vector<undirected_edge<resistor>> res_edges; 
     //std::vector<directed_edge<T>> _edges;  
 
     /* funzione che controlla se l'arco edge è già arco del grafo salvato in vec*/
     template<typename U, typename V>
-    bool has_same_nodes(std::vector<directed_edge<U>> vec, directed_edge<V> edge) {
+    bool has_same_nodes(std::vector<undirected_edge<U>> vec, undirected_edge<V> edge) {
         for (const auto& existing_edge : vec) {
                 if (edge.from() == existing_edge.from() && edge.to() == existing_edge.to()) {
                     return true; 
@@ -32,34 +32,23 @@ private:
 
 public:
 
-    directed_graph() {}
+    undirected_graph() {}
     
     // copy constructor
-    directed_graph(const directed_graph& other) = default;
+    undirected_graph(const undirected_graph& other) = default;
 
-    /* il metodo neighbors restituisce i nodi collegati nel senso di arco diretto */
+    /* il metodo neighbors restituisce i nodi collegati nel senso di arco non diretto */
     std::set<int> neighbors(const int node) const {
 
         if (nodes.count(node)) {
-            
-            auto it = graph.find(node); // cerco l'iteratore dove si trova il nodo all'interno della mappa di adiacenza
-            
-            // Se l'iteratore non punta alla fine, il nodo esiste
-            if (it != graph.end()) {
-                return it->second; // 'it->' = vai all'oggetto puntato (la std::pair); '.second' = prendi il valore associato alla chiave (il set dei nodi vicini)            
-            }
-            
-            // Se il nodo è nel grafo ma non nella mappa, significa che non ha archi uscenti
-            return {};
+            return graph.at(node);
         }
-        
-        // Se non è nemmeno in "nodes", non fa parte del grafo
-        return {};
+        else return {};
     }
-    // BUG POSSIBILE
-    // se aggiungo lo stesso arco con componenti diverse NON dà errore
+
     
-    void add_edge(const directed_edge<generator>& edge) {
+    
+    void add_edge(const undirected_edge<generator>& edge) {
         /* Controllo incrociato: */
         if (has_same_nodes(res_edges, edge) ) {
             std::cerr << "Nodes of edge " << edge << " already is a resistor edge! \nCheck input file!!" << std::endl; 
@@ -73,13 +62,14 @@ public:
         /* inserisco l'arco nella struttura dati */
         nodes.insert(edge.from());
         nodes.insert(edge.to());
-        graph[edge.from()].insert(edge.to());  
+        graph[edge.from()].insert(edge.to());
+        graph[edge.to()].insert(edge.from());  
 
         /*aggiungo l'arco ad un vettore di archi*/
         gen_edges.push_back(edge);
     }
 
-    void add_edge(const directed_edge<resistor>& edge) {
+    void add_edge(const undirected_edge<resistor>& edge) {
         
         /* Controllo incrociato: */
         if (has_same_nodes(res_edges, edge) ) {
@@ -95,16 +85,17 @@ public:
         nodes.insert(edge.from());
         nodes.insert(edge.to());
         graph[edge.from()].insert(edge.to());  
+        graph[edge.to()].insert(edge.from());  
 
         /*aggiungo l'arco ad un vettore di archi*/
         res_edges.push_back(edge);
     }
     
-    std::vector<directed_edge<generator>> all_edges_gen() const {
+    std::vector<undirected_edge<generator>> all_edges_gen() const {
         return gen_edges;
     }
 
-    std::vector<directed_edge<resistor>> all_edges_res() const {
+    std::vector<undirected_edge<resistor>> all_edges_res() const {
         return res_edges;
     }
 
@@ -130,8 +121,8 @@ public:
         2. Scorro tutti gli archi di questo grafo (G). 
         3. Se un arco NON viene trovato in G' (std::find restituisce .end()), 
            significa che appartiene alla differenza, quindi lo aggiungo al risultato. */
-    directed_graph operator-(const directed_graph& other) const {
-        directed_graph result; // grafo vuoto 
+    undirected_graph operator-(const undirected_graph& other) const {
+        undirected_graph result; // grafo vuoto 
         // prima controllo tra gli archi dei resistori
         for (const auto& r_edge : res_edges) { 
             auto found = std::find(other.res_edges.begin(), other.res_edges.end(), r_edge);
@@ -175,7 +166,7 @@ inline std::ostream& operator<<(std::ostream& os, const std::set<int>& s)
 }
 
 // operatore << per il grafo //
-inline std::ostream& operator<<(std::ostream& os, const directed_graph& graph)
+inline std::ostream& operator<<(std::ostream& os, const undirected_graph& graph)
 {
     /*for (const auto& node : graph.all_nodes()) {
         os << node << " : " << graph.neighbors(node) << "\n";

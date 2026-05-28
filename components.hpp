@@ -17,6 +17,9 @@ public:
 
     std::string name()  const {return _name; } 
     double      value() const {return _value; } 
+    bool operator==(const generator& other) const {
+        return (_name == other._name && _value == other._value);
+    }
 
 };
 
@@ -42,7 +45,9 @@ public:
     std::string name()  const {return _name; } 
     double      value() const {return _value; } 
 
-
+    bool operator==(const resistor& other) const {
+        return (_name == other._name && _value == other._value);
+    }
    
 };
 

@@ -3,7 +3,7 @@
 #include <algorithm> 
 
 template<typename T>
-class directed_edge {
+class undirected_edge {
 private: 
     int _from;
     int _to;
@@ -21,7 +21,7 @@ public:
         value = w.second;
     }*/
 
-    directed_edge(T comp, int u, int v) {
+    undirected_edge(T comp, int u, int v) {
         _from = u;
         _to = v;
         _comp = comp;
@@ -31,7 +31,7 @@ public:
     T   comp() const {return _comp;}
     //std::pair<std::string, double> weight() const {return _weight; }
 
-    bool operator<(const directed_edge<T>& other) const {
+    bool operator<(const undirected_edge<T>& other) const {
         if (_from < other._from) return true;
         if (_from == other._from) {
             return _to < other._to;
@@ -39,7 +39,7 @@ public:
         return false;
     }
 
-    bool operator==(const directed_edge<T>& other) const {
+    bool operator==(const undirected_edge<T>& other) const {
         return (_from == other._from && _to == other._to && _comp == other._comp);
     }
 };
@@ -51,9 +51,9 @@ public:
 } */
 
 template<typename T>
-inline std::ostream& operator<<(std::ostream& os, const directed_edge<T>& edge)
+inline std::ostream& operator<<(std::ostream& os, const undirected_edge<T>& edge)
 {   
-    os << edge.comp() << " " << edge.from() << " --> " << edge.to();
+    os << edge.comp() << " " << edge.from() << " -- " << edge.to();
     return os;
 }
 

@@ -4,6 +4,15 @@
 #include <unordered_map>
 #include <stdexcept>
 
+/*
+
+
+(1,2)
+
+
+
+*/
+
 /* Struttura dati PILA con politica LIFO (Last In First Out)*/
 /* Analogia con una PILA di libri: posiziono un libro nella cima della pila con put();
    e prendo il libro dalla cima della pila con get() [altrimenti la pila casca] */
