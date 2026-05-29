@@ -4,7 +4,8 @@
 #include "containers.hpp"
 #include "directed_edge.hpp"
 #include "directed_graph.hpp"
-#include "graph_visits.hpp"
+//#include "graph_visits.hpp"
+#include "cycles.hpp"
 #include "components.hpp"
 
 /*file che si occupa di trasformare l'input.txt in una struttura grafo*/
@@ -67,8 +68,11 @@ int main(int argc, const char *argv[] ) {
 
     stack<Journey> s;  // uso uno stack cosi che graph_visit diventi una dfs
     std::cout << G << std::endl;
-    undirected_graph T = graph_visit(G, 1, s);
-
+    undirected_graph T = dfs(G, 1, s);
+    int k = G.all_edges_gen().size() + G.all_edges_res().size() - G.all_nodes().size() + 1; // rappresenta il numero di cicli dati da |E|-|V|+1
+    for (int i=0; i<k; i++) {
+        print_vector(get_fundamental_cycles(G)[i]);
+    }
     std::cout << T << std::endl;
 
     std::cout << G - T << std::endl;

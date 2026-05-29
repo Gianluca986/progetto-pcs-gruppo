@@ -12,7 +12,7 @@
 class undirected_graph {
 private: 
     std::unordered_map<int, std::set<int>> graph;
-    std::set<int> nodes;    // memorizzo i nodi in un set (che ignora i duplicati)
+    std::set<int> nodes;    // memorizzo i nodi in un set 
     std::vector<undirected_edge<generator>> gen_edges; 
     std::vector<undirected_edge<resistor>> res_edges; 
     //std::vector<directed_edge<T>> _edges;  
