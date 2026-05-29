@@ -117,7 +117,7 @@ std::vector<std::vector<int>> get_fundamental_cycles(const undirected_graph& G) 
     }
     // la pratica conferma la teoria? 
     if (cycles.size() != k) { // nota: cycles.size() restituisce SOLO il numero di righe
-        std::cerr << "Attenzione: Trovati " << cycles.size() << " cicli, ma se ne aspettavano " << k << "!\n";
+        std::cerr << "Warning: Found " << cycles.size() << " cycles, but expected cycles are: " << k << "!\n";
     }
     return cycles;
 
