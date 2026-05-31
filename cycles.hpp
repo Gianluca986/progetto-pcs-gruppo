@@ -4,11 +4,21 @@
 #include <vector> 
 #include <set> 
 #include <unordered_map>
-#include "directed_edge.hpp" 
-#include "directed_graph.hpp" 
+#include "undirected_edge.hpp" 
+#include "undirected_graph.hpp" 
 #include "components.hpp" 
 #include "containers.hpp" 
-//#include <Eigen/Dense>
+
+
+template<typename T>
+inline void print_cycle(const std::vector<T>& v)
+{
+    std::cout << "(";
+    for (size_t i = 0; i < v.size(); i++) {
+        std::cout << v[i] << ",";        
+    }
+    std::cout << ")\n";
+}
 
 
 /* 1. CREAZIONE CICLI CON DFS*/
@@ -33,7 +43,6 @@ undirected_graph dfs(const undirected_graph& G, int source, T& container) {
         if (reached[step_to]) {continue;}
         reached[step_to] = true;
 
-        // Macchina
         if (step_from != step_to) {
             bool edge_added = false;
 

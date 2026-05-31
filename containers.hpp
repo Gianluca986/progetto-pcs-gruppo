@@ -4,14 +4,14 @@
 #include <unordered_map>
 #include <stdexcept>
 
-/*
-
-
-(1,2)
-
-
-
-*/
+template<typename T>
+inline void print_vector(const std::vector<T>& v)
+{
+    for (size_t i = 0; i < v.size(); i++) {
+        std::cout << v[i] << " " << std::endl;        
+    }
+    std::cout << "\n";
+}
 
 /* Struttura dati PILA con politica LIFO (Last In First Out)*/
 /* Analogia con una PILA di libri: posiziono un libro nella cima della pila con put();

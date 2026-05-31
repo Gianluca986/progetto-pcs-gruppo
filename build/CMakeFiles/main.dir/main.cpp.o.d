@@ -182,7 +182,7 @@ CMakeFiles/main.dir/main.cpp.o: \
  /usr/include/c++/14/bits/enable_special_members.h \
  /usr/include/c++/14/bits/node_handle.h \
  /usr/include/c++/14/bits/erase_if.h \
- /home/pcsdocker/Data/PROGETTO_PCS/directed_edge.hpp \
+ /home/pcsdocker/Data/PROGETTO_PCS/undirected_edge.hpp \
  /usr/include/c++/14/algorithm /usr/include/c++/14/bits/stl_algo.h \
  /usr/include/c++/14/bits/algorithmfwd.h \
  /usr/include/c++/14/bits/stl_heap.h \
@@ -192,7 +192,7 @@ CMakeFiles/main.dir/main.cpp.o: \
  /usr/include/c++/14/bits/ranges_algobase.h \
  /usr/include/c++/14/pstl/glue_algorithm_defs.h \
  /usr/include/c++/14/pstl/execution_defs.h \
- /home/pcsdocker/Data/PROGETTO_PCS/directed_graph.hpp \
+ /home/pcsdocker/Data/PROGETTO_PCS/undirected_graph.hpp \
  /usr/include/c++/14/set /usr/include/c++/14/bits/stl_tree.h \
  /usr/include/c++/14/bits/stl_set.h \
  /usr/include/c++/14/bits/stl_multiset.h \
@@ -444,4 +444,6 @@ CMakeFiles/main.dir/main.cpp.o: \
  /usr/include/eigen3/Eigen/src/Eigenvalues/GeneralizedEigenSolver.h \
  /usr/include/eigen3/Eigen/src/Eigenvalues/RealQZ.h \
  /usr/include/eigen3/Eigen/src/Eigenvalues/MatrixBaseEigenvalues.h \
- /home/pcsdocker/Data/PROGETTO_PCS/cycles.hpp
+ /home/pcsdocker/Data/PROGETTO_PCS/cycles.hpp \
+ /home/pcsdocker/Data/PROGETTO_PCS/matrices.hpp \
+ /home/pcsdocker/Data/PROGETTO_PCS/conjugate_gradient.hpp

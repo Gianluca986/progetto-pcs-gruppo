@@ -2,34 +2,20 @@
 #include <fstream>
 #include <vector>
 #include "containers.hpp"
-#include "directed_edge.hpp"
-#include "directed_graph.hpp"
+#include "undirected_edge.hpp"
+#include "undirected_graph.hpp"
 //#include "graph_visits.hpp"
 #include "cycles.hpp"
 #include "components.hpp"
+#include "matrices.hpp"
 
-/*file che si occupa di trasformare l'input.txt in una struttura grafo*/
-
-template<typename T>
-inline void print_vector(const std::vector<T>& v)
-{
-    for (size_t i = 0; i < v.size(); i++) {
-        std::cout << v[i] << " " << std::endl;        
-    }
-    std::cout << "\n";
-}
-
+/* file che si occupa di trasformare l'input.txt in una struttura grafo */
 
 int main(int argc, const char *argv[] ) {
-    // se l'utente non specifica il file come parametro il programma restituisce errore e si chiude
-    /*if (argc < 2) {
-        std::cout << "Error: file name not declared as parameter. \n";
-        return 1;
-    }*/
 
+    /* INPUT */
     std::string file_name = "input.txt";     
-   // std::string file_name = argv[1];     // il nome del file è quello scritto nel terminale come secondo parametro
-    std::ifstream ifs(file_name);          // apro il file
+    std::ifstream ifs(file_name);          
 
     std::vector<undirected_edge<generator>> gen_edges;
     std::vector<undirected_edge<resistor>>  res_edges;
@@ -40,8 +26,6 @@ int main(int argc, const char *argv[] ) {
         double value;
         int _from, _to;
         
-
-        // Il ciclo continua finché la lettura di tutti i dati va a buon fine
         while (ifs >> component >> value >> _from >> _to) { 
             if (component[0] == 'V') {
                 generator gen(component, value);
@@ -55,28 +39,31 @@ int main(int argc, const char *argv[] ) {
                 res_edges.push_back(edge_r);
                 G.add_edge(edge_r);
             }
-            
-            // std::cout << component << " " << value << " " << _from << " " << _to << std::endl;
         }
     }
     else {
-        std::cout << "Error: unable to open " << file_name << "\n";
+        std::cerr << "Error: unable to open " << file_name << "\n";
         return 1;
     }
-    //print_vector(res_edges);
-    //print_vector(gen_edges);
 
-    stack<Journey> s;  // uso uno stack cosi che graph_visit diventi una dfs
-    std::cout << G << std::endl;
-    undirected_graph T = dfs(G, 1, s);
-    int k = G.all_edges_gen().size() + G.all_edges_res().size() - G.all_nodes().size() + 1; // rappresenta il numero di cicli dati da |E|-|V|+1
-    for (int i=0; i<k; i++) {
-        print_vector(get_fundamental_cycles(G)[i]);
+
+    
+    /* ORDINAMENTO DEI DATI (Fondamentale per la matematica e l'output) */
+    std::sort(res_edges.begin(), res_edges.end(), SortByComponentNumber<resistor>());
+    std::sort(gen_edges.begin(), gen_edges.end(), SortByComponentNumber<generator>());
+    G.sort_all_edges(); 
+    
+    /* CALCOLO DEL SISTEMA LINEARE
+      trova i cicli, crea B, R, v e risolve il sistema */
+    Eigen::VectorXd v_R = find_current_resistor(G);
+    
+    /* OUTPUT */
+    for (size_t j = 0; j < res_edges.size(); j++ ) {
+        double current = v_R[j] / res_edges[j].comp().value();
+        std::cout << res_edges[j].comp().name() << ": V = " << v_R[j]
+                  << " volts, I = " << current << " amps." << std::endl;
     }
-    std::cout << T << std::endl;
 
-    std::cout << G - T << std::endl;
     return 0;
-
-
 }
+

@@ -47,8 +47,6 @@ undirected_graph graph_visit(const undirected_graph& G, int source, T& container
 
             // cerco se l'arco originale era un resitore
             for (const auto& r_edge : G.all_edges_res()) {
-                // bug qui!!
-                //  
                 if ((r_edge.from() == step_from && r_edge.to() == step_to) || (r_edge.to() == step_from && r_edge.from() == step_to)) {
                     tree.add_edge(r_edge); // Trovato! Lo aggiungo all'albero
                     edge_added = true;

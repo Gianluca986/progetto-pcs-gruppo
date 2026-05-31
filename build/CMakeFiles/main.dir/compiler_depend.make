@@ -3,10 +3,12 @@
 
 CMakeFiles/main.dir/main.cpp.o: /home/pcsdocker/Data/PROGETTO_PCS/main.cpp \
   /home/pcsdocker/Data/PROGETTO_PCS/components.hpp \
+  /home/pcsdocker/Data/PROGETTO_PCS/conjugate_gradient.hpp \
   /home/pcsdocker/Data/PROGETTO_PCS/containers.hpp \
   /home/pcsdocker/Data/PROGETTO_PCS/cycles.hpp \
-  /home/pcsdocker/Data/PROGETTO_PCS/directed_edge.hpp \
-  /home/pcsdocker/Data/PROGETTO_PCS/directed_graph.hpp \
+  /home/pcsdocker/Data/PROGETTO_PCS/matrices.hpp \
+  /home/pcsdocker/Data/PROGETTO_PCS/undirected_edge.hpp \
+  /home/pcsdocker/Data/PROGETTO_PCS/undirected_graph.hpp \
   /usr/include/alloca.h \
   /usr/include/asm-generic/bitsperlong.h \
   /usr/include/asm-generic/errno-base.h \
@@ -865,6 +867,10 @@ CMakeFiles/main.dir/main.cpp.o:
 
 /usr/include/eigen3/Eigen/src/Core/VectorwiseOp.h:
 
+/usr/include/eigen3/Eigen/src/Core/VectorBlock.h:
+
+/usr/include/eigen3/Eigen/src/Core/TriangularMatrix.h:
+
 /usr/include/c++/14/cstring:
 
 /usr/include/c++/14/cwchar:
@@ -934,8 +940,6 @@ CMakeFiles/main.dir/main.cpp.o:
 /usr/include/eigen3/Eigen/src/Core/arch/Default/Half.h:
 
 /usr/include/c++/14/functional:
-
-/usr/include/c++/14/bits/std_mutex.h:
 
 /usr/include/linux/sched/types.h:
 
@@ -1027,19 +1031,39 @@ CMakeFiles/main.dir/main.cpp.o:
 
 /usr/include/c++/14/bits/ranges_util.h:
 
-/usr/include/c++/14/bits/charconv.h:
+/home/pcsdocker/Data/PROGETTO_PCS/conjugate_gradient.hpp:
 
-/usr/include/c++/14/bits/basic_ios.tcc:
+/usr/include/c++/14/bits/max_size_type.h:
 
-/usr/include/x86_64-linux-gnu/bits/long-double.h:
+/usr/include/c++/14/new:
 
-/usr/include/c++/14/stdlib.h:
+/usr/include/c++/14/bits/memory_resource.h:
+
+/usr/include/eigen3/Eigen/src/Core/EigenBase.h:
+
+/usr/include/eigen3/Eigen/src/Core/arch/Default/GenericPacketMathFunctions.h:
+
+/usr/include/eigen3/Eigen/src/Core/MapBase.h:
+
+/usr/include/eigen3/Eigen/src/Core/products/SelfadjointProduct.h:
+
+/usr/include/c++/14/bits/uses_allocator.h:
+
+/usr/include/features-time64.h:
+
+/usr/include/eigen3/Eigen/src/Core/GenericPacketMath.h:
+
+/usr/include/c++/14/bits/localefwd.h:
+
+/usr/include/eigen3/Eigen/src/Core/util/SymbolicIndex.h:
+
+/usr/include/eigen3/Eigen/src/Core/SolverBase.h:
 
 /usr/include/eigen3/Eigen/src/Core/products/SelfadjointMatrixMatrix.h:
 
 /usr/include/c++/14/bits/atomic_base.h:
 
-/home/pcsdocker/Data/PROGETTO_PCS/directed_graph.hpp:
+/home/pcsdocker/Data/PROGETTO_PCS/undirected_graph.hpp:
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h:
 
@@ -1063,25 +1087,31 @@ CMakeFiles/main.dir/main.cpp.o:
 
 /usr/include/c++/14/bits/alloc_traits.h:
 
-/usr/include/c++/14/bits/stl_tree.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/14/libgcc_s.so:
-
-/usr/include/c++/14/bit:
-
-/usr/include/c++/14/bits/string_view.tcc:
-
-/usr/include/c++/14/streambuf:
-
-/usr/include/c++/14/bits/stl_function.h:
-
-/usr/include/wchar.h:
-
-/usr/include/eigen3/Eigen/src/Core/PlainObjectBase.h:
+/usr/include/c++/14/bits/std_mutex.h:
 
 /usr/include/x86_64-linux-gnu/bits/posix2_lim.h:
 
 /usr/include/c++/14/bits/ios_base.h:
+
+/usr/include/eigen3/Eigen/src/Core/functors/AssignmentFunctors.h:
+
+/usr/include/c++/14/array:
+
+/usr/include/eigen3/Eigen/src/Core/util/ForwardDeclarations.h:
+
+/usr/include/c++/14/bits/hashtable.h:
+
+/usr/include/eigen3/Eigen/src/Geometry/Scaling.h:
+
+/usr/include/c++/14/cstdlib:
+
+/usr/include/c++/14/system_error:
+
+/usr/include/eigen3/Eigen/src/Core/arch/Default/Settings.h:
+
+/usr/include/asm-generic/posix_types.h:
+
+/usr/include/c++/14/tr1/bessel_function.tcc:
 
 /usr/include/eigen3/Eigen/src/Geometry/Rotation2D.h:
 
@@ -1099,7 +1129,37 @@ CMakeFiles/main.dir/main.cpp.o:
 
 /usr/include/c++/14/debug/assertions.h:
 
-/usr/include/c++/14/tr1/riemann_zeta.tcc:
+/usr/include/c++/14/bits/stl_tree.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/14/libgcc_s.so:
+
+/usr/include/c++/14/bit:
+
+/usr/include/c++/14/bits/string_view.tcc:
+
+/usr/include/c++/14/streambuf:
+
+/usr/include/c++/14/bits/stl_function.h:
+
+/usr/include/wchar.h:
+
+/usr/include/eigen3/Eigen/src/Core/PlainObjectBase.h:
+
+/usr/include/c++/14/bits/sstream.tcc:
+
+/usr/include/c++/14/bits/stl_set.h:
+
+/usr/include/c++/14/stdexcept:
+
+/usr/include/c++/14/tr1/special_function_util.h:
+
+/usr/include/x86_64-linux-gnu/bits/posix_opt.h:
+
+/usr/include/eigen3/Eigen/src/Eigenvalues/EigenSolver.h:
+
+/usr/include/eigen3/Eigen/src/Eigenvalues/ComplexEigenSolver.h:
+
+/usr/include/c++/14/bits/streambuf.tcc:
 
 /usr/include/eigen3/Eigen/src/Core/functors/TernaryFunctors.h:
 
@@ -1109,19 +1169,11 @@ CMakeFiles/main.dir/main.cpp.o:
 
 /home/pcsdocker/Data/PROGETTO_PCS/cycles.hpp:
 
-/usr/include/eigen3/Eigen/src/Core/functors/AssignmentFunctors.h:
+/usr/include/eigen3/Eigen/src/Core/DiagonalMatrix.h:
 
-/usr/include/c++/14/array:
+/usr/include/c++/14/bits/ptr_traits.h:
 
-/usr/include/eigen3/Eigen/src/Core/util/ForwardDeclarations.h:
-
-/usr/include/c++/14/bits/hashtable.h:
-
-/home/pcsdocker/Data/PROGETTO_PCS/directed_edge.hpp:
-
-/usr/include/c++/14/climits:
-
-/usr/include/c++/14/string:
+/usr/include/alloca.h:
 
 /usr/include/c++/14/bits/stl_pair.h:
 
@@ -1135,17 +1187,15 @@ CMakeFiles/main.dir/main.cpp.o:
 
 /usr/include/eigen3/Eigen/src/Core/SelfAdjointView.h:
 
-/usr/include/c++/14/bits/max_size_type.h:
+/usr/lib/x86_64-linux-gnu/crtn.o:
 
-/usr/include/c++/14/new:
+/usr/include/x86_64-linux-gnu/bits/waitflags.h:
 
-/usr/include/c++/14/bits/memory_resource.h:
+/usr/include/c++/14/bits/hash_bytes.h:
 
-/usr/include/eigen3/Eigen/src/Core/EigenBase.h:
+/usr/include/c++/14/climits:
 
-/usr/include/eigen3/Eigen/src/Core/arch/Default/GenericPacketMathFunctions.h:
-
-/usr/include/eigen3/Eigen/src/Core/MapBase.h:
+/usr/include/c++/14/string:
 
 /usr/include/c++/14/cstdio:
 
@@ -1153,45 +1203,21 @@ CMakeFiles/main.dir/main.cpp.o:
 
 /usr/include/c++/14/bits/locale_classes.tcc:
 
-/usr/include/c++/14/bits/ptr_traits.h:
+/usr/include/c++/14/bits/charconv.h:
 
-/usr/include/alloca.h:
+/usr/include/c++/14/bits/basic_ios.tcc:
 
-/usr/include/c++/14/stdexcept:
+/usr/include/x86_64-linux-gnu/bits/long-double.h:
 
-/usr/include/c++/14/tr1/special_function_util.h:
+/usr/include/c++/14/stdlib.h:
 
 /usr/include/eigen3/Eigen/src/Geometry/Hyperplane.h:
 
-/usr/include/c++/14/bits/basic_string.h:
-
 /usr/include/c++/14/bits/locale_facets.h:
 
-/usr/include/x86_64-linux-gnu/bits/posix_opt.h:
+/usr/include/c++/14/bits/basic_string.h:
 
-/usr/include/eigen3/Eigen/src/Eigenvalues/EigenSolver.h:
-
-/usr/include/eigen3/Eigen/src/Eigenvalues/ComplexEigenSolver.h:
-
-/usr/include/c++/14/bits/streambuf.tcc:
-
-/usr/include/eigen3/Eigen/src/Geometry/Scaling.h:
-
-/usr/include/c++/14/cstdlib:
-
-/usr/include/c++/14/system_error:
-
-/usr/include/eigen3/Eigen/src/Core/arch/Default/Settings.h:
-
-/usr/include/asm-generic/posix_types.h:
-
-/usr/include/c++/14/tr1/bessel_function.tcc:
-
-/usr/lib/x86_64-linux-gnu/crtn.o:
-
-/usr/include/x86_64-linux-gnu/bits/waitflags.h:
-
-/usr/include/c++/14/bits/hash_bytes.h:
+/usr/include/c++/14/tr1/riemann_zeta.tcc:
 
 /usr/include/c++/14/bits/cpp_type_traits.h:
 
@@ -1209,6 +1235,10 @@ CMakeFiles/main.dir/main.cpp.o:
 
 /usr/include/c++/14/tr1/poly_laguerre.tcc:
 
+/home/pcsdocker/Data/PROGETTO_PCS/undirected_edge.hpp:
+
+/usr/include/eigen3/Eigen/src/Core/AssignEvaluator.h:
+
 /usr/include/x86_64-linux-gnu/bits/wctype-wchar.h:
 
 /usr/include/c++/14/bits/exception_defines.h:
@@ -1219,19 +1249,9 @@ CMakeFiles/main.dir/main.cpp.o:
 
 /usr/include/c++/14/tr1/legendre_function.tcc:
 
-/usr/include/c++/14/cwctype:
-
-/usr/include/eigen3/Eigen/src/Core/functors/BinaryFunctors.h:
-
-/usr/include/c++/14/cstdint:
-
-/usr/include/eigen3/Eigen/src/Core/NumTraits.h:
-
 /usr/include/c++/14/set:
 
 /usr/include/c++/14/bits/functexcept.h:
-
-/usr/include/eigen3/Eigen/src/Core/TriangularMatrix.h:
 
 /usr/include/x86_64-linux-gnu/bits/confname.h:
 
@@ -1263,23 +1283,13 @@ CMakeFiles/main.dir/main.cpp.o:
 
 /usr/include/c++/14/bits/locale_facets.tcc:
 
-/usr/include/eigen3/Eigen/src/Core/products/SelfadjointProduct.h:
+/usr/include/c++/14/cwctype:
 
-/usr/include/c++/14/bits/uses_allocator.h:
+/usr/include/eigen3/Eigen/src/Core/functors/BinaryFunctors.h:
 
-/usr/include/features-time64.h:
+/usr/include/c++/14/cstdint:
 
-/usr/include/eigen3/Eigen/src/Core/GenericPacketMath.h:
-
-/usr/include/c++/14/bits/stl_set.h:
-
-/usr/include/c++/14/bits/sstream.tcc:
-
-/usr/include/c++/14/bits/localefwd.h:
-
-/usr/include/eigen3/Eigen/src/Core/util/SymbolicIndex.h:
-
-/usr/include/eigen3/Eigen/src/Core/SolverBase.h:
+/usr/include/eigen3/Eigen/src/Core/NumTraits.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/14/include/emmintrin.h:
 
@@ -1324,6 +1334,12 @@ CMakeFiles/main.dir/main.cpp.o:
 /usr/include/c++/14/algorithm:
 
 /usr/include/eigen3/Eigen/src/Core/ArrayBase.h:
+
+/lib/x86_64-linux-gnu/libm.so.6:
+
+/usr/include/eigen3/Eigen/src/Core/MatrixBase.h:
+
+/usr/include/c++/14/iosfwd:
 
 /usr/include/eigen3/Eigen/src/Core/products/TriangularMatrixVector.h:
 
@@ -1385,6 +1401,8 @@ CMakeFiles/main.dir/main.cpp.o:
 
 /usr/include/c++/14/tuple:
 
+/home/pcsdocker/Data/PROGETTO_PCS/matrices.hpp:
+
 /usr/include/c++/14/type_traits:
 
 /usr/include/x86_64-linux-gnu/bits/types/error_t.h:
@@ -1433,8 +1451,6 @@ CMakeFiles/main.dir/main.cpp.o:
 
 /usr/include/eigen3/Eigen/src/Core/Assign.h:
 
-/usr/include/eigen3/Eigen/src/Core/AssignEvaluator.h:
-
 /usr/include/asm-generic/errno-base.h:
 
 /usr/include/eigen3/Eigen/src/Core/BandMatrix.h:
@@ -1475,14 +1491,6 @@ CMakeFiles/main.dir/main.cpp.o:
 
 /usr/include/eigen3/Eigen/src/Core/DenseStorage.h:
 
-/usr/include/eigen3/Eigen/src/Core/DiagonalMatrix.h:
-
-/lib/x86_64-linux-gnu/libm.so.6:
-
-/usr/include/c++/14/iosfwd:
-
-/usr/include/eigen3/Eigen/src/Core/MatrixBase.h:
-
 /usr/include/x86_64-linux-gnu/sys/cdefs.h:
 
 /usr/include/x86_64-linux-gnu/c++/14/bits/gthr-default.h:
@@ -1513,9 +1521,9 @@ CMakeFiles/main.dir/main.cpp.o:
 
 /usr/include/eigen3/Eigen/src/Core/BooleanRedux.h:
 
-/usr/include/asm-generic/int-ll64.h:
-
 /usr/include/c++/14/ios:
+
+/usr/include/asm-generic/int-ll64.h:
 
 /usr/include/eigen3/Eigen/src/Core/NestByValue.h:
 
@@ -1570,5 +1578,3 @@ CMakeFiles/main.dir/main.cpp.o:
 /usr/lib/gcc/x86_64-linux-gnu/14/include/limits.h:
 
 /usr/include/eigen3/Eigen/src/Core/Transpose.h:
-
-/usr/include/eigen3/Eigen/src/Core/VectorBlock.h:

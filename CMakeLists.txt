@@ -16,6 +16,6 @@ find_package(Eigen3 CONFIG REQUIRED)
 list(APPEND libraries_list PUBLIC Eigen3::Eigen)
 
 # --- TARGET PRINCIPALE ---
-set(SOURCES main.cpp directed_edge.hpp directed_graph.hpp project.hpp components.hpp)
+set(SOURCES main.cpp directed_edge.hpp directed_graph.hpp project.hpp components.hpp conjugate_gradient.hpp)
 add_executable(main ${SOURCES})
 target_link_libraries(main ${libraries_list})

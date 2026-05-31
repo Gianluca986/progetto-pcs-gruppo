@@ -4,10 +4,12 @@
 CMakeFiles/main.dir/main.cpp.o
  /home/pcsdocker/Data/PROGETTO_PCS/main.cpp
  /home/pcsdocker/Data/PROGETTO_PCS/components.hpp
+ /home/pcsdocker/Data/PROGETTO_PCS/conjugate_gradient.hpp
  /home/pcsdocker/Data/PROGETTO_PCS/containers.hpp
  /home/pcsdocker/Data/PROGETTO_PCS/cycles.hpp
- /home/pcsdocker/Data/PROGETTO_PCS/directed_edge.hpp
- /home/pcsdocker/Data/PROGETTO_PCS/directed_graph.hpp
+ /home/pcsdocker/Data/PROGETTO_PCS/matrices.hpp
+ /home/pcsdocker/Data/PROGETTO_PCS/undirected_edge.hpp
+ /home/pcsdocker/Data/PROGETTO_PCS/undirected_graph.hpp
  /usr/include/alloca.h
  /usr/include/asm-generic/bitsperlong.h
  /usr/include/asm-generic/errno-base.h
