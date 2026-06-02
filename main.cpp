@@ -14,7 +14,13 @@
 int main(int argc, const char *argv[] ) {
 
     /* INPUT */
-    std::string file_name = "input.txt";     
+    // std::string file_name = "input.txt";   
+    if (argc < 2) {
+        std::cerr << "Error: file name not declared as parameter via command line! \n";
+        return 1;
+    }
+
+    std::string file_name = argv[1];
     std::ifstream ifs(file_name);          
 
     std::vector<undirected_edge<generator>> gen_edges;
@@ -31,13 +37,21 @@ int main(int argc, const char *argv[] ) {
                 generator gen(component, value);
                 undirected_edge<generator> edge_g(gen, _from, _to);
                 gen_edges.push_back(edge_g);
-                G.add_edge(edge_g);
+                
+                // se l'inserimento dell'arco fallisce (es, componenenti paralleli), termina
+                if (!G.add_edge(edge_g)) {
+                    return 1; 
+                }
             }
             else if (component[0] == 'R') {
                 resistor res(component, value);
                 undirected_edge<resistor> edge_r(res, _from, _to);
                 res_edges.push_back(edge_r);
-                G.add_edge(edge_r);
+
+                // se l'inserimento dell'arco fallisce (es, componenenti paralleli), termina
+                if (!G.add_edge(edge_r)) {
+                    return 1;
+                }
             }
         }
     }
@@ -59,10 +73,27 @@ int main(int argc, const char *argv[] ) {
     
     /* OUTPUT */
     for (size_t j = 0; j < res_edges.size(); j++ ) {
+        // Legge di Ohm: i = V / R
         double current = v_R[j] / res_edges[j].comp().value();
+
         std::cout << res_edges[j].comp().name() << ": V = " << v_R[j]
                   << " volts, I = " << current << " amps." << std::endl;
     }
+
+    // ---------------------------------------------------------------------------------------------------------------------------------------
+
+
+    stack<Journey> s;
+    undirected_graph T = dfs(G,1,s);
+    //std::cout << T;
+    std::cout << G-T;
+
+
+    std::vector<bool> P = {false, false, true, true, true};
+    std::vector<bool> S = {true, true, false, true, true};
+    std::cout << scalar_product(P,S) << "\n";
+
+  
 
     return 0;
 }

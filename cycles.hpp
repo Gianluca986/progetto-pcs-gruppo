@@ -102,7 +102,7 @@ std::vector<int> create_path(const undirected_graph& T, int u, int v) {
     return path;
 }
 
-std::vector<std::vector<int>> get_fundamental_cycles(const undirected_graph& G) {
+std::vector<std::vector<int>> get_fundamental_cycles_dfs(const undirected_graph& G) {
     int source = *G.all_nodes().begin(); // prendo il primo nodo come sorgente
     stack<Journey> s;
     undirected_graph T = dfs(G, source, s);
@@ -131,3 +131,56 @@ std::vector<std::vector<int>> get_fundamental_cycles(const undirected_graph& G) 
     return cycles;
 
 }
+
+
+/* 2. CREAZIONE CICLI *MINIMI* CON DE PINA*/
+int scalar_product(const std::vector<bool>& S, const std::vector<bool>& P) {
+    int ret = 0;
+    for (int i = 0; i < P.size(); i++) {
+        ret += S[i] * P[i];
+    }
+    return ret % 2;
+}
+
+
+// NOTA: prima di usare questo codice occorre fare G.sort_all_edges() 
+std::vector<std::vector<int>> get_fundamental_cycles_dePina(const undirected_graph& G) {
+   
+    int source = *G.all_nodes().begin(); // prendo il primo nodo come sorgente
+    stack<Journey> s;
+    undirected_graph T = dfs(G, source, s);
+    undirected_graph C = G - T;
+    C.sort_all_edges();
+
+    int k = C.all_edges().size(); // k = |E|-|V|+1 
+    int m = G.all_edges().size();  // m = |E|
+
+    // Crea k righe, ognuna contenente un vettore di m elementi inizializzati a false (0)
+    std::vector<std::vector<bool>> S_(k, std::vector<bool>(m, false));    
+
+    for (int j = 0; j < k; j++) {
+        for (int i = 0; i < m; i++) {
+            if (G.all_edges()[i] == C.all_edges()[i])
+                S_[k][i] = 1;
+        }
+    }
+    for (int i = 0; i < k; i++) {
+        print_vector(S_[i]);
+    }
+    
+    std::vector<bool> P;
+
+
+
+
+
+
+    std::vector<std::vector<int>> cycles;
+
+
+
+
+    return cycles;
+}
+
+

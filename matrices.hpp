@@ -55,7 +55,7 @@ Eigen::MatrixXd build_incidence_matrix(const undirected_graph& G) {
     
     std::sort(res_edges.begin(), res_edges.end(), SortByComponentNumber<resistor>()); 
 
-    std::vector<std::vector<int>> cycles = get_fundamental_cycles(G);
+    std::vector<std::vector<int>> cycles = get_fundamental_cycles_dfs(G);
     
     int m = res_edges.size();
     int n = cycles.size(); // n = |E| - |V| + 1
@@ -104,7 +104,7 @@ Eigen::VectorXd build_generator_vector(const undirected_graph& G) {
 
     std::sort(gen_edges.begin(), gen_edges.end(), SortByComponentNumber<generator>());
 
-    std::vector<std::vector<int>> cycles = get_fundamental_cycles(G);
+    std::vector<std::vector<int>> cycles = get_fundamental_cycles_dfs(G);
     
     int n = cycles.size(); // n = |E| - |V| + 1
     int h = gen_edges.size();

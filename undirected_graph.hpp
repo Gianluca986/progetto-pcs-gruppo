@@ -49,6 +49,12 @@ public:
         }
         return false;
     }
+
+    bool operator==(const UniversalEdge& other) const {
+        return (_from == other._from && _to == other._to 
+            && _is_generator == other._is_generator && _name == other._name 
+            && _value == other._value);
+    }
 };
 
 inline std::ostream& operator<<(std::ostream& os, const UniversalEdge& edge) {
@@ -98,17 +104,21 @@ public:
 
     
     /* add_edge per i generatori */
-    void add_edge(const undirected_edge<generator>& edge) {
-        /* Controllo incrociato: */
+    bool add_edge(const undirected_edge<generator>& edge) {
+        /* Controllo incrociato: è parallelo a un resistore? */
         if (has_same_nodes(res_edges, edge) ) {
-            std::cerr << "Nodes of edge " << edge << " already is a resistor edge! \nCheck input file!!" << std::endl; 
-            return;
+            std::cerr << "Error: Generator " << edge.comp().name() <<
+             " is parallel to a resistor!\nParellel circuits are not allowed.\nCheck input file!!" << std::endl; 
+            return false;
         }
 
-        /* Controllo normale: l'arco esiste già nei generatori? */
+        /* Controllo normale: è parallelo ad un altro generatore? */
         if (has_same_nodes(gen_edges, edge)) {
-            return;
+            std::cerr << "Error: Generator " << edge.comp().name() 
+                      << " is parallel to another generator!\nParallel circuits are not allowed.\n"; 
+            return false; 
         }
+
         /* inserisco l'arco nella struttura dati */
         nodes.insert(edge.from());
         nodes.insert(edge.to());
@@ -117,22 +127,28 @@ public:
 
         edges.push_back(UniversalEdge(edge.comp().name(), edge.comp().value(), true, edge.from(), edge.to()));
         gen_edges.push_back(edge);
+
+        return true;
     }
 
     /* add_edge per i resistori */
-    void add_edge(const undirected_edge<resistor>& edge) {
+    bool add_edge(const undirected_edge<resistor>& edge) {
         
-        /* Controllo incrociato: */
+        /* Controllo normale: è parallelo a un altro resistore? */
         if (has_same_nodes(res_edges, edge) ) {
-            std::cerr << "Nodes of edge " << edge << " already is a resistor edge! \nCheck input file!!" << std::endl; 
-            return;
+            std::cerr << "Error: Resistor " << edge.comp().name() <<
+             " is parallel to another resistor!\nParallel circuits are not allowed.\nCheck input file!!" << std::endl; 
+            return false;
         }
 
-        /* Controllo normale: l'arco esiste già nei generatori? */
+        /* Controllo incrociato: è parallelo a un generatore? */
         if (has_same_nodes(gen_edges, edge)) {
-            return;
+            std::cerr << "Error: Resistor " << edge.comp().name() <<
+             " is parallel to a generator!\nParallel circuits are not allowed.\nCheck input file!!" << std::endl; 
+            return false;
         }
-        /* inserisco l'arco nella struttura dati */
+
+        /* inserimento valido */
         nodes.insert(edge.from());
         nodes.insert(edge.to());
         graph[edge.from()].insert(edge.to());  
@@ -141,62 +157,46 @@ public:
         /*aggiungo l'arco ad un vettore di archi*/
         edges.push_back(UniversalEdge(edge.comp().name(), edge.comp().value(), false, edge.from(), edge.to()));
         res_edges.push_back(edge);
+
+        return true;
     }
 
     void sort_all_edges() {
         std::sort(edges.begin(), edges.end()); 
     }
     
-    std::vector<undirected_edge<generator>> all_edges_gen() const {
+    const std::vector<undirected_edge<generator>>& all_edges_gen() const {
         return gen_edges;
     }
 
-    std::vector<undirected_edge<resistor>> all_edges_res() const {
+    const std::vector<undirected_edge<resistor>>& all_edges_res() const {
         return res_edges;
     }
 
-    std::vector<UniversalEdge> all_edges() const {
+    const std::vector<UniversalEdge>& all_edges() const {
         return edges;
     }
 
-    std::set<int> all_nodes() const {
+    const std::set<int>& all_nodes() const {
         return nodes;
     }
     int edge_number(const int u, const int v) const {
-    // Si presume che sort_all_edges() sia GIA' stato chiamato nel main
-    
-    int dim = edges.size();
-    for (int i = 0; i < dim; i++) {
-        // Controllo se i nodi combaciano in un verso o nell'altro
-        if ((edges[i].from() == u && edges[i].to() == v) || 
-            (edges[i].to() == u && edges[i].from() == v)) {
-            
-            return i+1;
+        // Si presume che sort_all_edges() sia GIA' stato chiamato nel main
+        
+        int dim = edges.size();
+        for (int i = 0; i < dim; i++) {
+            // Controllo se i nodi combaciano in un verso o nell'altro
+            if ((edges[i].from() == u && edges[i].to() == v) || 
+                (edges[i].to() == u && edges[i].from() == v)) {
+                
+                return i+1;
+            }
         }
+        
+        std::cerr << "Error: Edge between " << u << " and " << v << " not found!\n";
+        return -1; 
     }
-    
-    std::cerr << "Error: Edge between " << u << " and " << v << " not found!\n";
-    return -1; 
-}
 
-    /*
-    1 : {2,3}       (1,2)      (4,3)
-    2 : {3,4}       (1,3)
-    3 : {}          (2,3) 
-    4 : {3}         (2,4)
-
-    1 : {2,3}       (1,2)
-    2 : {4}         (1,3)           ==>     (2,3) 2 : {3}
-    3 : {}          (2,4)                   (4,3) 4 : {3}
-    4 : {}
-    */
-
-                     /* SOTTRAZIONE */
-    /*  Calcola la differenza tra grafi (G - G'):
-        1. Parto da un grafo risultato vuoto. (result)
-        2. Scorro tutti gli archi di questo grafo (G). 
-        3. Se un arco NON viene trovato in G' (std::find restituisce .end()), 
-           significa che appartiene alla differenza, quindi lo aggiungo al risultato. */
     undirected_graph operator-(const undirected_graph& other) const {
         undirected_graph result; // grafo vuoto 
         // prima controllo tra gli archi dei resistori
@@ -244,10 +244,6 @@ inline std::ostream& operator<<(std::ostream& os, const std::set<int>& s)
 // operatore << per il grafo //
 inline std::ostream& operator<<(std::ostream& os, const undirected_graph& graph)
 {
-    /*for (const auto& node : graph.all_nodes()) {
-        os << node << " : " << graph.neighbors(node) << "\n";
-    }*/
-
     for (const auto& edge : graph.all_edges_gen()) {
         os << edge << "\n";
     }
@@ -256,4 +252,5 @@ inline std::ostream& operator<<(std::ostream& os, const undirected_graph& graph)
     }
     return os;
 }
+
 
