@@ -9,7 +9,7 @@
    mi permette di aggiornare direttamente una variabile del chiamante (es. nel test) 
    senza dover creare strutture dati complesse per un ritorno multiplo.
  */
-Eigen::VectorXd conjugate_gradient(const Eigen::MatrixXd& A, const Eigen::VectorXd& b, const Eigen::VectorXd& x0, int it_max, double res_tol, int& steps) {
+inline Eigen::VectorXd conjugate_gradient(const Eigen::MatrixXd& A, const Eigen::VectorXd& b, const Eigen::VectorXd& x0, int it_max, double res_tol, int& steps) {
 
     /*controllo che la matrice A sia simmetrica*/
     if (!A.isApprox(A.transpose())) {
@@ -31,7 +31,7 @@ Eigen::VectorXd conjugate_gradient(const Eigen::MatrixXd& A, const Eigen::Vector
     while (it < it_max && res.norm() > res_tol * res0_norm)  // norma del residuo RELATIVA
     {
         auto pAp = p.dot(A * p);
-
+        if (pAp == 0.0) {break; }
         const double alpha_k = p.dot(res) / pAp;
 
         x = x + alpha_k * p;

@@ -83,17 +83,6 @@ int main(int argc, const char *argv[] ) {
     // ---------------------------------------------------------------------------------------------------------------------------------------
 
 
-    stack<Journey> s;
-    undirected_graph T = graph_visit(G,1,s);
-    //std::cout << T;
-    std::cout << G-T;
-
-
-    std::vector<bool> P = {false, false, true, true, true};
-    std::vector<bool> S = {true, true, false, true, true};
-    std::cout << scalar_product(P,S) << "\n";
-
-  
 
     return 0;
 }

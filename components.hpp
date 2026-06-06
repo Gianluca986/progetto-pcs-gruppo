@@ -10,7 +10,7 @@ private:
 public:
     generator() {} 
 
-    generator(std::string name, double value) {
+    generator(const std::string& name, double value) {
         _name = name;
         _value = value;
     }

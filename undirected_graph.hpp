@@ -76,14 +76,14 @@ private:
     /* funzione che controlla se l'arco "edge" è già arco del grafo salvato in "vec"*/
     template<typename U, typename V>
     bool has_same_nodes(std::vector<undirected_edge<U>> vec, undirected_edge<V> edge) {
-        for (const auto& existing_edge : vec) {
-                if (edge.from() == existing_edge.from() && edge.to() == existing_edge.to()) {
-                    return true; 
-                }
-
+    for (const auto& existing_edge : vec) {
+        if ((edge.from() == existing_edge.from() && edge.to() == existing_edge.to()) ||
+            (edge.from() == existing_edge.to() && edge.to() == existing_edge.from())) {
+            return true; 
         }
-        return false;
     }
+    return false;
+}
 
 
 public:
