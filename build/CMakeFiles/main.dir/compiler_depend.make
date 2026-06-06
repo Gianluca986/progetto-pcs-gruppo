@@ -6,6 +6,7 @@ CMakeFiles/main.dir/main.cpp.o: /home/pcsdocker/Data/PROGETTO_PCS/main.cpp \
   /home/pcsdocker/Data/PROGETTO_PCS/conjugate_gradient.hpp \
   /home/pcsdocker/Data/PROGETTO_PCS/containers.hpp \
   /home/pcsdocker/Data/PROGETTO_PCS/cycles.hpp \
+  /home/pcsdocker/Data/PROGETTO_PCS/graph_visits.hpp \
   /home/pcsdocker/Data/PROGETTO_PCS/matrices.hpp \
   /home/pcsdocker/Data/PROGETTO_PCS/undirected_edge.hpp \
   /home/pcsdocker/Data/PROGETTO_PCS/undirected_graph.hpp \
@@ -40,6 +41,7 @@ CMakeFiles/main.dir/main.cpp.o: /home/pcsdocker/Data/PROGETTO_PCS/main.cpp \
   /usr/include/c++/14/bits/cpp_type_traits.h \
   /usr/include/c++/14/bits/cxxabi_forced.h \
   /usr/include/c++/14/bits/cxxabi_init_exception.h \
+  /usr/include/c++/14/bits/deque.tcc \
   /usr/include/c++/14/bits/enable_special_members.h \
   /usr/include/c++/14/bits/erase_if.h \
   /usr/include/c++/14/bits/exception.h \
@@ -90,14 +92,18 @@ CMakeFiles/main.dir/main.cpp.o: /home/pcsdocker/Data/PROGETTO_PCS/main.cpp \
   /usr/include/c++/14/bits/stl_algobase.h \
   /usr/include/c++/14/bits/stl_bvector.h \
   /usr/include/c++/14/bits/stl_construct.h \
+  /usr/include/c++/14/bits/stl_deque.h \
   /usr/include/c++/14/bits/stl_function.h \
   /usr/include/c++/14/bits/stl_heap.h \
   /usr/include/c++/14/bits/stl_iterator.h \
   /usr/include/c++/14/bits/stl_iterator_base_funcs.h \
   /usr/include/c++/14/bits/stl_iterator_base_types.h \
   /usr/include/c++/14/bits/stl_list.h \
+  /usr/include/c++/14/bits/stl_map.h \
+  /usr/include/c++/14/bits/stl_multimap.h \
   /usr/include/c++/14/bits/stl_multiset.h \
   /usr/include/c++/14/bits/stl_pair.h \
+  /usr/include/c++/14/bits/stl_queue.h \
   /usr/include/c++/14/bits/stl_set.h \
   /usr/include/c++/14/bits/stl_tempbuf.h \
   /usr/include/c++/14/bits/stl_tree.h \
@@ -132,6 +138,7 @@ CMakeFiles/main.dir/main.cpp.o: /home/pcsdocker/Data/PROGETTO_PCS/main.cpp \
   /usr/include/c++/14/cwctype \
   /usr/include/c++/14/debug/assertions.h \
   /usr/include/c++/14/debug/debug.h \
+  /usr/include/c++/14/deque \
   /usr/include/c++/14/exception \
   /usr/include/c++/14/ext/aligned_buffer.h \
   /usr/include/c++/14/ext/alloc_traits.h \
@@ -148,12 +155,14 @@ CMakeFiles/main.dir/main.cpp.o: /home/pcsdocker/Data/PROGETTO_PCS/main.cpp \
   /usr/include/c++/14/istream \
   /usr/include/c++/14/limits \
   /usr/include/c++/14/list \
+  /usr/include/c++/14/map \
   /usr/include/c++/14/new \
   /usr/include/c++/14/numbers \
   /usr/include/c++/14/ostream \
   /usr/include/c++/14/pstl/execution_defs.h \
   /usr/include/c++/14/pstl/glue_algorithm_defs.h \
   /usr/include/c++/14/pstl/pstl_config.h \
+  /usr/include/c++/14/queue \
   /usr/include/c++/14/set \
   /usr/include/c++/14/sstream \
   /usr/include/c++/14/stdexcept \
@@ -871,13 +880,31 @@ CMakeFiles/main.dir/main.cpp.o:
 
 /usr/include/eigen3/Eigen/src/Core/TriangularMatrix.h:
 
-/usr/include/c++/14/cstring:
+/usr/lib/gcc/x86_64-linux-gnu/14/include/limits.h:
 
-/usr/include/c++/14/cwchar:
+/usr/include/eigen3/Eigen/src/Core/Transpose.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h:
 
 /usr/include/eigen3/Eigen/src/Core/Swap.h:
+
+/usr/include/pthread.h:
+
+/usr/include/eigen3/Eigen/src/misc/Image.h:
+
+/usr/include/eigen3/Eigen/src/Core/StlIterators.h:
+
+/usr/include/eigen3/Eigen/src/Core/util/SymbolicIndex.h:
+
+/usr/include/eigen3/Eigen/src/Core/SolverBase.h:
+
+/usr/include/x86_64-linux-gnu/sys/types.h:
+
+/usr/include/eigen3/Eigen/src/Core/SolveTriangular.h:
+
+/usr/include/x86_64-linux-gnu/bits/timesize.h:
+
+/usr/include/eigen3/Eigen/src/Core/Solve.h:
 
 /usr/include/c++/14/bits/locale_classes.h:
 
@@ -889,11 +916,15 @@ CMakeFiles/main.dir/main.cpp.o:
 
 /usr/include/c++/14/bits/version.h:
 
+/usr/include/x86_64-linux-gnu/bits/errno.h:
+
+/usr/include/eigen3/Eigen/src/Core/Transpositions.h:
+
+/usr/include/eigen3/Eigen/LU:
+
 /usr/include/c++/14/bits/uses_allocator_args.h:
 
-/usr/include/x86_64-linux-gnu/bits/timesize.h:
-
-/usr/include/eigen3/Eigen/src/Core/Solve.h:
+/usr/include/c++/14/bits/stl_queue.h:
 
 /usr/include/c++/14/bits/unordered_map.h:
 
@@ -921,9 +952,19 @@ CMakeFiles/main.dir/main.cpp.o:
 
 /usr/include/c++/14/complex:
 
+/usr/include/eigen3/Eigen/src/Core/StableNorm.h:
+
+/usr/include/c++/14/bits/stl_multiset.h:
+
+/usr/include/c++/14/bits/fstream.tcc:
+
+/usr/include/eigen3/Eigen/src/Core/SelfAdjointView.h:
+
 /usr/include/c++/14/bits/stl_list.h:
 
 /usr/include/c++/14/bits/stl_iterator_base_types.h:
+
+/home/pcsdocker/Data/PROGETTO_PCS/graph_visits.hpp:
 
 /usr/include/c++/14/ext/numeric_traits.h:
 
@@ -1019,12 +1060,6 @@ CMakeFiles/main.dir/main.cpp.o:
 
 /usr/include/c++/14/bits/memoryfwd.h:
 
-/usr/include/x86_64-linux-gnu/bits/errno.h:
-
-/usr/include/eigen3/Eigen/LU:
-
-/usr/include/eigen3/Eigen/src/Core/Transpositions.h:
-
 /usr/include/c++/14/bits/stl_vector.h:
 
 /usr/include/c++/14/bits/basic_string.tcc:
@@ -1055,9 +1090,17 @@ CMakeFiles/main.dir/main.cpp.o:
 
 /usr/include/c++/14/bits/localefwd.h:
 
-/usr/include/eigen3/Eigen/src/Core/util/SymbolicIndex.h:
+/usr/include/c++/14/bits/sstream.tcc:
 
-/usr/include/eigen3/Eigen/src/Core/SolverBase.h:
+/usr/include/c++/14/bits/stl_set.h:
+
+/usr/include/x86_64-linux-gnu/bits/posix_opt.h:
+
+/usr/include/eigen3/Eigen/src/Eigenvalues/EigenSolver.h:
+
+/usr/include/eigen3/Eigen/src/Eigenvalues/ComplexEigenSolver.h:
+
+/usr/include/c++/14/bits/streambuf.tcc:
 
 /usr/include/eigen3/Eigen/src/Core/products/SelfadjointMatrixMatrix.h:
 
@@ -1077,8 +1120,6 @@ CMakeFiles/main.dir/main.cpp.o:
 
 /usr/include/c++/14/bits/allocated_ptr.h:
 
-/usr/include/c++/14/bits/basic_ios.h:
-
 /usr/include/linux/limits.h:
 
 /usr/include/c++/14/bits/atomic_lockfree_defines.h:
@@ -1089,23 +1130,19 @@ CMakeFiles/main.dir/main.cpp.o:
 
 /usr/include/c++/14/bits/std_mutex.h:
 
+/usr/include/c++/14/bits/stl_multimap.h:
+
+/usr/include/c++/14/bits/stringfwd.h:
+
+/usr/include/x86_64-linux-gnu/bits/floatn-common.h:
+
+/usr/include/c++/14/bits/locale_facets.tcc:
+
+/usr/include/c++/14/bits/exception_ptr.h:
+
 /usr/include/x86_64-linux-gnu/bits/posix2_lim.h:
 
 /usr/include/c++/14/bits/ios_base.h:
-
-/usr/include/eigen3/Eigen/src/Core/functors/AssignmentFunctors.h:
-
-/usr/include/c++/14/array:
-
-/usr/include/eigen3/Eigen/src/Core/util/ForwardDeclarations.h:
-
-/usr/include/c++/14/bits/hashtable.h:
-
-/usr/include/eigen3/Eigen/src/Geometry/Scaling.h:
-
-/usr/include/c++/14/cstdlib:
-
-/usr/include/c++/14/system_error:
 
 /usr/include/eigen3/Eigen/src/Core/arch/Default/Settings.h:
 
@@ -1113,17 +1150,9 @@ CMakeFiles/main.dir/main.cpp.o:
 
 /usr/include/c++/14/tr1/bessel_function.tcc:
 
-/usr/include/eigen3/Eigen/src/Geometry/Rotation2D.h:
+/usr/include/eigen3/Eigen/src/Core/functors/TernaryFunctors.h:
 
-/usr/include/eigen3/Eigen/src/Core/products/TriangularSolverVector.h:
-
-/usr/include/c++/14/cstddef:
-
-/usr/include/eigen3/Eigen/src/Core/Fuzzy.h:
-
-/usr/include/eigen3/Eigen/src/misc/Kernel.h:
-
-/usr/include/c++/14/concepts:
+/home/pcsdocker/Data/PROGETTO_PCS/containers.hpp:
 
 /usr/include/c++/14/bits/exception.h:
 
@@ -1145,31 +1174,39 @@ CMakeFiles/main.dir/main.cpp.o:
 
 /usr/include/eigen3/Eigen/src/Core/PlainObjectBase.h:
 
-/usr/include/c++/14/bits/sstream.tcc:
-
-/usr/include/c++/14/bits/stl_set.h:
-
-/usr/include/c++/14/stdexcept:
-
-/usr/include/c++/14/tr1/special_function_util.h:
-
-/usr/include/x86_64-linux-gnu/bits/posix_opt.h:
-
-/usr/include/eigen3/Eigen/src/Eigenvalues/EigenSolver.h:
-
-/usr/include/eigen3/Eigen/src/Eigenvalues/ComplexEigenSolver.h:
-
-/usr/include/c++/14/bits/streambuf.tcc:
-
-/usr/include/eigen3/Eigen/src/Core/functors/TernaryFunctors.h:
-
-/home/pcsdocker/Data/PROGETTO_PCS/containers.hpp:
-
 /usr/lib/linux/uapi/x86/asm/bitsperlong.h:
 
 /home/pcsdocker/Data/PROGETTO_PCS/cycles.hpp:
 
 /usr/include/eigen3/Eigen/src/Core/DiagonalMatrix.h:
+
+/usr/include/eigen3/Eigen/src/Core/functors/AssignmentFunctors.h:
+
+/usr/include/c++/14/array:
+
+/usr/include/eigen3/Eigen/src/Core/util/ForwardDeclarations.h:
+
+/usr/include/c++/14/bits/hashtable.h:
+
+/usr/lib/x86_64-linux-gnu/crtn.o:
+
+/usr/include/x86_64-linux-gnu/bits/waitflags.h:
+
+/usr/include/c++/14/bits/hash_bytes.h:
+
+/usr/include/c++/14/climits:
+
+/usr/include/c++/14/string:
+
+/usr/include/c++/14/bits/locale_classes.tcc:
+
+/usr/include/c++/14/cstring:
+
+/usr/include/c++/14/cwchar:
+
+/usr/include/c++/14/tr1/special_function_util.h:
+
+/usr/include/c++/14/stdexcept:
 
 /usr/include/c++/14/bits/ptr_traits.h:
 
@@ -1183,25 +1220,7 @@ CMakeFiles/main.dir/main.cpp.o:
 
 /home/pcsdocker/Data/PROGETTO_PCS/components.hpp:
 
-/usr/include/c++/14/bits/fstream.tcc:
-
-/usr/include/eigen3/Eigen/src/Core/SelfAdjointView.h:
-
-/usr/lib/x86_64-linux-gnu/crtn.o:
-
-/usr/include/x86_64-linux-gnu/bits/waitflags.h:
-
-/usr/include/c++/14/bits/hash_bytes.h:
-
-/usr/include/c++/14/climits:
-
-/usr/include/c++/14/string:
-
-/usr/include/c++/14/cstdio:
-
-/usr/include/c++/14/bits/utility.h:
-
-/usr/include/c++/14/bits/locale_classes.tcc:
+/usr/include/c++/14/bits/basic_ios.h:
 
 /usr/include/c++/14/bits/charconv.h:
 
@@ -1219,6 +1238,10 @@ CMakeFiles/main.dir/main.cpp.o:
 
 /usr/include/c++/14/tr1/riemann_zeta.tcc:
 
+/usr/include/c++/14/bits/stl_deque.h:
+
+/usr/include/c++/14/deque:
+
 /usr/include/c++/14/bits/cpp_type_traits.h:
 
 /usr/include/c++/14/bits/ostream.tcc:
@@ -1235,11 +1258,19 @@ CMakeFiles/main.dir/main.cpp.o:
 
 /usr/include/c++/14/tr1/poly_laguerre.tcc:
 
+/usr/include/eigen3/Eigen/src/Core/Stride.h:
+
+/usr/include/c++/14/bits/std_function.h:
+
+/usr/include/c++/14/bits/enable_special_members.h:
+
 /home/pcsdocker/Data/PROGETTO_PCS/undirected_edge.hpp:
 
 /usr/include/eigen3/Eigen/src/Core/AssignEvaluator.h:
 
 /usr/include/x86_64-linux-gnu/bits/wctype-wchar.h:
+
+/usr/include/c++/14/bits/deque.tcc:
 
 /usr/include/c++/14/bits/exception_defines.h:
 
@@ -1259,6 +1290,8 @@ CMakeFiles/main.dir/main.cpp.o:
 
 /usr/include/eigen3/Eigen/src/Core/CwiseBinaryOp.h:
 
+/usr/include/c++/14/bits/stl_map.h:
+
 /usr/include/eigen3/Eigen/src/Core/Diagonal.h:
 
 /usr/include/c++/14/bits/codecvt.h:
@@ -1275,13 +1308,27 @@ CMakeFiles/main.dir/main.cpp.o:
 
 /usr/include/c++/14/bits/list.tcc:
 
-/usr/include/c++/14/bits/stringfwd.h:
+/usr/include/eigen3/Eigen/src/misc/Kernel.h:
 
-/usr/include/c++/14/bits/exception_ptr.h:
+/usr/include/c++/14/concepts:
 
-/usr/include/x86_64-linux-gnu/bits/floatn-common.h:
+/usr/include/eigen3/Eigen/src/Geometry/Rotation2D.h:
 
-/usr/include/c++/14/bits/locale_facets.tcc:
+/usr/include/eigen3/Eigen/src/Core/products/TriangularSolverVector.h:
+
+/usr/include/c++/14/cstddef:
+
+/usr/include/eigen3/Eigen/src/Core/Fuzzy.h:
+
+/usr/include/c++/14/bits/utility.h:
+
+/usr/include/c++/14/cstdio:
+
+/usr/include/eigen3/Eigen/src/Geometry/Scaling.h:
+
+/usr/include/c++/14/cstdlib:
+
+/usr/include/c++/14/system_error:
 
 /usr/include/c++/14/cwctype:
 
@@ -1305,6 +1352,8 @@ CMakeFiles/main.dir/main.cpp.o:
 
 /usr/include/c++/14/ext/atomicity.h:
 
+/usr/include/c++/14/map:
+
 /usr/include/eigen3/Eigen/src/Core/SelfCwiseBinaryOp.h:
 
 /usr/include/c++/14/ext/string_conversions.h:
@@ -1314,12 +1363,6 @@ CMakeFiles/main.dir/main.cpp.o:
 /usr/include/c++/14/fstream:
 
 /usr/include/eigen3/Eigen/src/Core/CwiseUnaryOp.h:
-
-/usr/include/pthread.h:
-
-/usr/include/eigen3/Eigen/src/misc/Image.h:
-
-/usr/include/eigen3/Eigen/src/Core/StlIterators.h:
 
 /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h:
 
@@ -1370,6 +1413,10 @@ CMakeFiles/main.dir/main.cpp.o:
 /usr/include/c++/14/debug/debug.h:
 
 /usr/include/c++/14/tr1/hypergeometric.tcc:
+
+/usr/include/c++/14/queue:
+
+/usr/include/eigen3/Eigen/src/Core/PermutationMatrix.h:
 
 /usr/include/c++/14/cmath:
 
@@ -1543,8 +1590,6 @@ CMakeFiles/main.dir/main.cpp.o:
 
 /usr/include/eigen3/Eigen/src/Core/PartialReduxEvaluator.h:
 
-/usr/include/eigen3/Eigen/src/Core/PermutationMatrix.h:
-
 /usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h:
 
 /usr/include/eigen3/Eigen/src/Core/Product.h:
@@ -1560,21 +1605,3 @@ CMakeFiles/main.dir/main.cpp.o:
 /usr/include/eigen3/Eigen/src/Core/Random.h:
 
 /usr/include/eigen3/Eigen/src/Core/Reverse.h:
-
-/usr/include/x86_64-linux-gnu/sys/types.h:
-
-/usr/include/eigen3/Eigen/src/Core/SolveTriangular.h:
-
-/usr/include/c++/14/bits/stl_multiset.h:
-
-/usr/include/eigen3/Eigen/src/Core/StableNorm.h:
-
-/usr/include/c++/14/bits/std_function.h:
-
-/usr/include/c++/14/bits/enable_special_members.h:
-
-/usr/include/eigen3/Eigen/src/Core/Stride.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/14/include/limits.h:
-
-/usr/include/eigen3/Eigen/src/Core/Transpose.h:

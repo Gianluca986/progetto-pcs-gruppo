@@ -4,11 +4,10 @@
 #include <vector> 
 #include <set> 
 #include <unordered_map>
-#include "directed_edge.hpp" 
-#include "directed_graph.hpp" 
+#include "undirected_edge.hpp" 
+#include "undirected_graph.hpp" 
 #include "components.hpp" 
 #include "containers.hpp" 
-//#include <Eigen/Dense>
 
 
 struct Journey{

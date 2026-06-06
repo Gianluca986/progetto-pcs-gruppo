@@ -3,12 +3,14 @@
 #include <algorithm> 
 #include <vector> 
 #include <set> 
+#include <string> 
 #include <unordered_map>
 #include <Eigen/Dense>
 #include "undirected_edge.hpp" 
 #include "undirected_graph.hpp" 
 #include "components.hpp" 
 #include "conjugate_gradient.hpp" 
+#include "cycles.hpp" 
 
 
 template<typename T>
@@ -30,7 +32,7 @@ struct SortByComponentNumber {
 
 /* Funzioni che controllano se l'arco è nel verso giusto rispetto al ciclo oppure no */
 template<typename T>
-bool is_in_cycle_forward(const undirected_edge<T>& res, const std::vector<int>& cycle) {
+inline bool is_in_cycle_forward(const undirected_edge<T>& res, const std::vector<int>& cycle) {
     for (size_t i = 0; i < cycle.size() - 1; i++) {
         if (cycle[i] == res.from() && cycle[i+1] == res.to()) {
             return true;
@@ -40,7 +42,7 @@ bool is_in_cycle_forward(const undirected_edge<T>& res, const std::vector<int>& 
 }
 
 template<typename T>
-bool is_in_cycle_backward(const undirected_edge<T>& res, const std::vector<int>& cycle) {
+inline bool is_in_cycle_backward(const undirected_edge<T>& res, const std::vector<int>& cycle) {
     for (size_t i = 0; i < cycle.size() - 1; i++) {
         if (cycle[i+1] == res.from() && cycle[i] == res.to()) {
             return true;
@@ -50,17 +52,18 @@ bool is_in_cycle_backward(const undirected_edge<T>& res, const std::vector<int>&
 }
 
 /* Funzione per costruire la matrice di incidenza B (m × n) */
-Eigen::MatrixXd build_incidence_matrix(const undirected_graph& G) {
+inline Eigen::MatrixXd build_incidence_matrix(const undirected_graph& G, bool use_de_pina = false) {
     std::vector<undirected_edge<resistor>> res_edges = G.all_edges_res();
     
     std::sort(res_edges.begin(), res_edges.end(), SortByComponentNumber<resistor>()); 
 
-    std::vector<std::vector<int>> cycles = get_fundamental_cycles_dfs(G);
+    // selezione dinamica dell'algoritmo
+    std::vector<std::vector<int>> cycles = use_de_pina ? get_fundamental_cycles_dePina(G) : get_fundamental_cycles_dfs(G);
     
     int m = res_edges.size();
-    int n = cycles.size(); // n = |E| - |V| + 1
+    int n = cycles.size(); // n = |E|-|V|+1
     
-    // Inizializza la matrice già perfettamente riempita di 0
+    // Inizializza la matrice già riempita di 0
     Eigen::MatrixXd B = Eigen::MatrixXd::Zero(m, n);
 
     for (int j = 0; j < n; j++) {
@@ -78,7 +81,7 @@ Eigen::MatrixXd build_incidence_matrix(const undirected_graph& G) {
 }
 
 /* Funzione per costruire la matrice diagonale delle resistenze R (m x m) */
-Eigen::MatrixXd build_resistance_matrix(const undirected_graph& G) {
+inline Eigen::MatrixXd build_resistance_matrix(const undirected_graph& G) {
     std::vector<undirected_edge<resistor>> res_edges = G.all_edges_res();
     
     std::sort(res_edges.begin(), res_edges.end(), SortByComponentNumber<resistor>()); 
@@ -99,14 +102,15 @@ Eigen::MatrixXd build_resistance_matrix(const undirected_graph& G) {
 }
 
 /* Funzione per costruire il vettore dei generatori v (h) */
-Eigen::VectorXd build_generator_vector(const undirected_graph& G) {
+inline Eigen::VectorXd build_generator_vector(const undirected_graph& G, bool use_de_pina = false) {
     std::vector<undirected_edge<generator>> gen_edges = G.all_edges_gen();
 
     std::sort(gen_edges.begin(), gen_edges.end(), SortByComponentNumber<generator>());
 
-    std::vector<std::vector<int>> cycles = get_fundamental_cycles_dfs(G);
+    // selezione dinamica dell'algoritmo
+    std::vector<std::vector<int>> cycles = use_de_pina ? get_fundamental_cycles_dePina(G) : get_fundamental_cycles_dfs(G);
     
-    int n = cycles.size(); // n = |E| - |V| + 1
+    int n = cycles.size(); // n = |E|-|V|+1
     int h = gen_edges.size();
 
     Eigen::VectorXd v = Eigen::VectorXd::Zero(n);
@@ -125,27 +129,25 @@ Eigen::VectorXd build_generator_vector(const undirected_graph& G) {
     return v;
 }
 
-/* forse conviene unire gli output per non sprecare i conti*/
-Eigen::VectorXd find_current(const undirected_graph& G) {
-    Eigen::MatrixXd B = build_incidence_matrix(G);
+inline Eigen::VectorXd find_current(const undirected_graph& G, bool use_de_pina = false) {
+    Eigen::MatrixXd B = build_incidence_matrix(G, use_de_pina);
     Eigen::MatrixXd R = build_resistance_matrix(G);
-    Eigen::VectorXd v = build_generator_vector(G); 
+    Eigen::VectorXd v = build_generator_vector(G, use_de_pina); 
+
     Eigen::MatrixXd A = B.transpose() * R * B;
     Eigen::VectorXd x0 = Eigen::VectorXd::Random(v.size());
+
     int steps = 0;
     int it_max = 1000;
     const double res_tol = 1.0e-12;
+
     Eigen::VectorXd i = conjugate_gradient(A, v, x0, it_max, res_tol, steps);
     return i;
 }
 
-Eigen::VectorXd find_current_resistor(const undirected_graph& G) {
-    Eigen::MatrixXd B = build_incidence_matrix(G);
+inline Eigen::VectorXd find_current_resistor(const undirected_graph& G, bool use_de_pina = false) {
+    Eigen::MatrixXd B = build_incidence_matrix(G, use_de_pina);
     Eigen::MatrixXd R = build_resistance_matrix(G);
-    Eigen::MatrixXd A = R * B;
-    Eigen::VectorXd v_R = R * B * find_current(G);
+    Eigen::VectorXd v_R = R * B * find_current(G, use_de_pina);
     return v_R;
 }
-
-
-

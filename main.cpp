@@ -4,7 +4,7 @@
 #include "containers.hpp"
 #include "undirected_edge.hpp"
 #include "undirected_graph.hpp"
-//#include "graph_visits.hpp"
+#include "graph_visits.hpp"
 #include "cycles.hpp"
 #include "components.hpp"
 #include "matrices.hpp"
@@ -69,7 +69,7 @@ int main(int argc, const char *argv[] ) {
     
     /* CALCOLO DEL SISTEMA LINEARE
       trova i cicli, crea B, R, v e risolve il sistema */
-    Eigen::VectorXd v_R = find_current_resistor(G);
+    Eigen::VectorXd v_R = find_current_resistor(G, true);
     
     /* OUTPUT */
     for (size_t j = 0; j < res_edges.size(); j++ ) {
@@ -84,7 +84,7 @@ int main(int argc, const char *argv[] ) {
 
 
     stack<Journey> s;
-    undirected_graph T = dfs(G,1,s);
+    undirected_graph T = graph_visit(G,1,s);
     //std::cout << T;
     std::cout << G-T;
 
