@@ -42,7 +42,7 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : " -Wall -Wshadow -Werror=vla -Wno-sign-compare -g -std=gnu++20"
+					"fragment" : " -Wall -Wshadow -Werror=vla -Wno-sign-compare -O3 -DNDEBUG -std=gnu++20"
 				}
 			],
 			"includes" : 
@@ -74,7 +74,7 @@
 		"commandFragments" : 
 		[
 			{
-				"fragment" : "-Wall -Wshadow -Werror=vla -Wno-sign-compare -g",
+				"fragment" : "-Wall -Wshadow -Werror=vla -Wno-sign-compare -O3 -DNDEBUG",
 				"role" : "flags"
 			},
 			{

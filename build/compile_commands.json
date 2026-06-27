@@ -1,7 +1,7 @@
 [
 {
   "directory": "/home/pcsdocker/Data/PROGETTO_PCS/build",
-  "command": "/usr/bin/g++  -isystem /usr/include/eigen3  -Wall -Wshadow -Werror=vla -Wno-sign-compare -g -std=gnu++20 -o CMakeFiles/main.dir/main.cpp.o -c /home/pcsdocker/Data/PROGETTO_PCS/main.cpp",
+  "command": "/usr/bin/g++  -isystem /usr/include/eigen3  -Wall -Wshadow -Werror=vla -Wno-sign-compare -O3 -DNDEBUG -std=gnu++20 -o CMakeFiles/main.dir/main.cpp.o -c /home/pcsdocker/Data/PROGETTO_PCS/main.cpp",
   "file": "/home/pcsdocker/Data/PROGETTO_PCS/main.cpp",
   "output": "CMakeFiles/main.dir/main.cpp.o"
 }

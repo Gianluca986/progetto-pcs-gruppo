@@ -6,5 +6,5 @@ CXX_DEFINES =
 
 CXX_INCLUDES = -isystem /usr/include/eigen3
 
-CXX_FLAGS =  -Wall -Wshadow -Werror=vla -Wno-sign-compare -g -std=gnu++20
+CXX_FLAGS =  -Wall -Wshadow -Werror=vla -Wno-sign-compare -O3 -DNDEBUG -std=gnu++20
 
