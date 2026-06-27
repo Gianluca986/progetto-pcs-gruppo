@@ -46,6 +46,7 @@ int main(int argc, const char *argv[] ) {
             else if (component[0] == 'R') {
                 resistor res(component, value);
                 undirected_edge<resistor> edge_r(res, _from, _to);
+                edge_r.node_sort();
                 res_edges.push_back(edge_r);
 
                 // se l'inserimento dell'arco fallisce (es, componenenti paralleli), termina

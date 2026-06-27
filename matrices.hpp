@@ -139,7 +139,7 @@ inline Eigen::VectorXd find_current(const undirected_graph& G, bool use_de_pina 
 
     int steps = 0;
     int it_max = 1000;
-    const double res_tol = 1.0e-12;
+    const double res_tol = 1.0e-10;
 
     Eigen::VectorXd i = conjugate_gradient(A, v, x0, it_max, res_tol, steps);
     return i;

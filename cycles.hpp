@@ -26,8 +26,7 @@ inline void print_cycle(const std::vector<T>& v)
 /* ================================================================
     1. CREAZIONE CICLI CON DFS
    ================================================================ */
-
-inline bool find_path(const undirected_graph& T, int u, int v, std::vector<bool>& visited, std::vector<int>& path) { 
+inline bool find_path(const undirected_graph& T, int u, int v, std::unordered_map<int, bool>& visited, std::vector<int>& path) { 
     visited[u] = true;
     path.push_back(u);
     if (u == v) {
@@ -47,7 +46,7 @@ inline bool find_path(const undirected_graph& T, int u, int v, std::vector<bool>
 
 inline std::vector<int> create_path(const undirected_graph& T, int u, int v) {
     std::vector<int> path;
-    std::vector<bool> visited(T.all_nodes().size() + 1, false);
+    std::unordered_map<int, bool> visited;
     find_path(T, u, v, visited, path);
     return path;
 }

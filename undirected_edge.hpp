@@ -7,24 +7,15 @@ class undirected_edge {
 private: 
     int _from;
     int _to;
-    /*std::string type_component;
-    double value;
-    std::pair<std::string, double> _weight;*/
     T _comp;
+
+
+public:
     void node_sort() {
         if (_from > _to) {
             std::swap(_from, _to);
         }
     }
-
-public:
-    /*directed_edge(const std::pair<std::string, double>& w, int u, int v) {
-        _from = u;
-        _to = v;
-        _weight = w;
-        type_component = w.first;
-        value = w.second;
-    }*/
 
     undirected_edge(T comp, int u, int v) {
         _from = u;
@@ -34,6 +25,7 @@ public:
     int from() const {return _from; } 
     int to()   const {return _to; } 
     T   comp() const {return _comp;}
+    
 
     bool operator<(const undirected_edge<T>& other) const {
         if (_from < other._from) return true;
@@ -48,11 +40,6 @@ public:
     }
 };
 
-/*inline std::ostream& operator<<(std::ostream& os, const directed_edge& edge)
-{   
-    os << "{" << edge.weight().first << ", " << edge.weight().second << "} " << edge.from() << " --> " << edge.to();
-    return os;
-} */
 
 template<typename T>
 inline std::ostream& operator<<(std::ostream& os, const undirected_edge<T>& edge)

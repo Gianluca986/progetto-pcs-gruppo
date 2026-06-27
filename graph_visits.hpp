@@ -26,8 +26,8 @@ struct Journey{
 
 template<typename T>
 undirected_graph graph_visit(const undirected_graph& G, int source, T& container) {
-    /* NOTA: il +1 nelle dimensione dei vettori è perché i nodi partono tutti da 1 e non da 0 */
-    std::vector<bool> reached(G.all_nodes().size()+1, false); // inizializzo un vettore di n = #nodi elementi a false 
+    /* NOTA: allocazione dinamica sicura per identificatori non sequenziali */
+    std::unordered_map<int, bool> reached; 
     undirected_graph tree;
 
     container.put({source,source});
@@ -39,8 +39,7 @@ undirected_graph graph_visit(const undirected_graph& G, int source, T& container
         
         if (reached[step_to]) {continue;}
         reached[step_to] = true;
-
-        // Macchina
+        
         if (step_from != step_to) {
             bool edge_added = false;
 
